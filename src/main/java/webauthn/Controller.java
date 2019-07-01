@@ -122,7 +122,7 @@ public class Controller {
 		if(response==null) {
 			response="OK registered!";
 		}
-		return response;
+		return response+" :: jsonfromClient == "+responseJson;
 	}
 	
 	@RequestMapping("/startAuthentication")
