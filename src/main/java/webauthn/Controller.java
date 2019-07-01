@@ -43,7 +43,7 @@ import com.yubico.webauthn.exception.RegistrationFailedException;
 @RestController
 public class Controller {
 	RelyingPartyIdentity rpIdentity = RelyingPartyIdentity.builder()
-		    .id("tcs.com")
+		    .id("herukoapp.com")
 		    .name("WebAuthn")
 		    .build();
 	MyCredentialRepository repo = new MyCredentialRepository();
@@ -69,7 +69,7 @@ public class Controller {
 	@RequestMapping("/startRegistration")
 	public String startRegistration() {
 		Random random = new Random();
-		byte[] userHandle = new byte[64];
+		byte[] userHandle = new byte[10];
 		random.nextBytes(userHandle);
 		ByteArray randomHandle = new ByteArray(userHandle);
 		
