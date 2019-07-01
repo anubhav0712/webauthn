@@ -94,7 +94,8 @@ public class Controller {
 	}
 	
 	@RequestMapping(value="/finishRegistration" , consumes = org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public void finishRegistration(org.springframework.http.HttpEntity<String> httpRequest) {
+	public String finishRegistration(org.springframework.http.HttpEntity<String> httpRequest) {
+		String response=null;
 		String responseJson = httpRequest.getBody();
 		PublicKeyCredential<AuthenticatorAttestationResponse, ClientRegistrationExtensionOutputs> pkc=null;
 		try {
@@ -110,12 +111,18 @@ public class Controller {
 			    repo.addRegistrationByUsername("alice", reg);
 			} catch (RegistrationFailedException e) { 
 				System.out.println("Something fishy.....");
+				response=e.getLocalizedMessage();
 				e.printStackTrace();
 			}
 		} catch (Exception e) {
 			System.out.println("Something more fishy.....");
+			response = e.getLocalizedMessage();
 			e.printStackTrace();
 		}
+		if(response==null) {
+			response="OK registered!";
+		}
+		return response;
 	}
 	
 	@RequestMapping("/startAuthentication")
