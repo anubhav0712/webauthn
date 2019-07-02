@@ -93,7 +93,7 @@ public class Controller {
 		return str;
 	}
 	
-	@RequestMapping(value="/finishRegistration" , consumes = org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@RequestMapping(value="/finishRegistration" ,method = RequestMethod.POST, consumes = org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public String finishRegistration(org.springframework.http.HttpEntity<String> httpRequest) {
 		String response=null;
 		String responseJson = httpRequest.getBody();
