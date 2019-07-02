@@ -122,6 +122,7 @@ public class Controller {
 		if(response==null) {
 			response="OK registered!";
 		}
+		System.out.println("hehhhahahhahahaa done");
 		return response+" :: jsonfromClient == "+responseJson;
 	}
 	
