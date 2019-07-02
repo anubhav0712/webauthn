@@ -129,6 +129,13 @@ public class Controller {
 		logger.debug("Debug log message");
         logger.info("Info log message");
         logger.error("Error log message");
+        Exception e = new Exception();
+        try {
+        throw e;
+        }
+        catch(Exception em) {
+        	em.printStackTrace();
+        }
 		return response+" :: jsonfromClient == "+responseJson;
 	}
 	
