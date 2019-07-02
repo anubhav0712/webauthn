@@ -7,6 +7,8 @@ import java.util.Random;
 
 import org.apache.el.stream.Optional;
 import org.apache.http.HttpEntity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -60,6 +62,7 @@ public class Controller {
 		HashMap<String , PublicKeyCredentialCreationOptions> requestCache = new HashMap<String , PublicKeyCredentialCreationOptions>();
 		HashMap<String , AssertionRequest> authRequestCache = new HashMap<String,AssertionRequest>();
 		HashMap<String , ByteArray> handleCache = new HashMap<String , ByteArray>();
+		private static Logger logger = LoggerFactory.getLogger(Controller.class);
 	
 	@RequestMapping("/index")
 	public String index() {
@@ -122,7 +125,10 @@ public class Controller {
 		if(response==null) {
 			response="OK registered!";
 		}
-		System.out.println("hehhhahahhahahaa done");
+		logger.info("hehhhahahhahahaa done");
+		logger.debug("Debug log message");
+        logger.info("Info log message");
+        logger.error("Error log message");
 		return response+" :: jsonfromClient == "+responseJson;
 	}
 	
