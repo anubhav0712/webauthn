@@ -141,9 +141,10 @@ public class Controller {
 			return json;
 	}
 	
-	@RequestMapping("/finishAuthentication")
-	public String finishAuthentication() {
-		String responseJson = "";
+	@RequestMapping(value="/finishAuthentication",method = RequestMethod.POST, consumes = org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public String finishAuthentication(org.springframework.http.HttpEntity<String> httpRequest) {
+		String response=null;
+		String responseJson = httpRequest.getBody();
 		PublicKeyCredential<AuthenticatorAssertionResponse, ClientAssertionExtensionOutputs> pkc=null;
 		try {
 			pkc = mapper.readValue(responseJson, new TypeReference<PublicKeyCredential<AuthenticatorAssertionResponse, ClientAssertionExtensionOutputs>>() {
@@ -159,7 +160,7 @@ public class Controller {
 			        .build());
 
 			    if (result.isSuccess()) {
-			        return result.getUsername();
+			        return result.getUsername()+":loggedin";
 			    }
 			} catch (AssertionFailedException e) { /* ... */ }
 			throw new RuntimeException("Authentication failed");
