@@ -9,6 +9,7 @@ import org.apache.el.stream.Optional;
 import org.apache.http.HttpEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -97,9 +98,8 @@ public class Controller {
 	}
 	
 	@RequestMapping(value="/finishRegistration" ,method = RequestMethod.POST)
-	public String finishRegistration(org.springframework.http.HttpEntity<String> httpRequest) {
+	public String finishRegistration(@RequestBody String responseJson) {
 		String response=null;
-		String responseJson = httpRequest.getBody();
 		System.out.println(responseJson);
 		PublicKeyCredential<AuthenticatorAttestationResponse, ClientRegistrationExtensionOutputs> pkc=null;
 		ObjectMapper mapper = new ObjectMapper()
