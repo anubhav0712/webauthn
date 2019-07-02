@@ -100,7 +100,12 @@ public class Controller {
 	public String finishRegistration(org.springframework.http.HttpEntity<String> httpRequest) {
 		String response=null;
 		String responseJson = httpRequest.getBody();
+		System.out.println(responseJson);
 		PublicKeyCredential<AuthenticatorAttestationResponse, ClientRegistrationExtensionOutputs> pkc=null;
+		ObjectMapper mapper = new ObjectMapper()
+			    .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
+			    .setSerializationInclusion(Include.NON_ABSENT)
+			    .registerModule(new Jdk8Module());
 		try {
 			pkc =mapper.readValue(responseJson, new TypeReference<PublicKeyCredential<AuthenticatorAttestationResponse, ClientRegistrationExtensionOutputs>>(){});
 			
@@ -129,13 +134,6 @@ public class Controller {
 		logger.debug("Debug log message");
         logger.info("Info log message");
         logger.error("Error log message");
-        Exception e = new Exception();
-        try {
-        throw e;
-        }
-        catch(Exception em) {
-        	em.printStackTrace();
-        }
 		return response+" :: jsonfromClient == "+responseJson;
 	}
 	
