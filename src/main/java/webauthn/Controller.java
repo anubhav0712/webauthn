@@ -2,6 +2,7 @@ package webauthn;
 
 import java.io.IOException;
 import java.net.CacheRequest;
+import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -9,6 +10,7 @@ import org.apache.el.stream.Optional;
 import org.apache.http.HttpEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -64,14 +66,17 @@ public class Controller {
 		HashMap<String , ByteArray> handleCache = new HashMap<String , ByteArray>();
 		private static Logger logger = LoggerFactory.getLogger(Controller.class);
 	
+	@CrossOrigin	
 	@RequestMapping("/index")
 	public String index() {
 		return "Welcome ";
 	}
 	
+	@CrossOrigin
 	@RequestMapping("/startRegistration")
 	public String startRegistration() {
-		Random random = new Random();
+		System.out.println("got a call");
+		SecureRandom random = new SecureRandom();
 		byte[] userHandle = new byte[10];
 		random.nextBytes(userHandle);
 		ByteArray randomHandle = new ByteArray(userHandle);
@@ -83,6 +88,7 @@ public class Controller {
 			        .id(randomHandle)
 			        .build())
 			    .build());
+		
 		String str = "Nothing...";
 		requestCache.put("alice", request);
 		handleCache.put("alice", randomHandle);
