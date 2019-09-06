@@ -107,8 +107,8 @@ public class Controller {
 	public String finishRegistration(org.springframework.http.HttpEntity<String> httpRequest) {
 		String response=null;
 		String responseJson = httpRequest.getBody();
-		System.out.println(httpRequest.getHeaders());
-		System.out.println(responseJson);
+		System.out.println("header"+httpRequest.getHeaders());
+		System.out.println("responseJSon "+responseJson);
 		PublicKeyCredential<AuthenticatorAttestationResponse, ClientRegistrationExtensionOutputs> pkc=null;
 		ObjectMapper mapper = new ObjectMapper()
 			    .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
