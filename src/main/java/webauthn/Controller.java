@@ -115,7 +115,10 @@ public class Controller {
 			    .setSerializationInclusion(Include.NON_ABSENT)
 			    .registerModule(new Jdk8Module());
 		try {
-			pkc =mapper.readValue(responseJson, new TypeReference<PublicKeyCredential<AuthenticatorAttestationResponse, ClientRegistrationExtensionOutputs>>(){});
+			
+			pkc=PublicKeyCredential.parseRegistrationResponseJson(responseJson);
+			System.out.println("parsing done");
+			//pkc =mapper.readValue(responseJson, new TypeReference<PublicKeyCredential<AuthenticatorAttestationResponse, ClientRegistrationExtensionOutputs>>(){});
 			
 			try {
 				PublicKeyCredentialCreationOptions request = requestCache.get("alice");
