@@ -102,6 +102,7 @@ public class Controller {
 		return str;
 	}
 	
+	@CrossOrigin
 	@RequestMapping(value="/finishRegistration" ,method = RequestMethod.POST)
 	public String finishRegistration(org.springframework.http.HttpEntity<String> httpRequest) {
 		String response=null;
