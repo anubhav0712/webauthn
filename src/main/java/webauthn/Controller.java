@@ -108,7 +108,7 @@ public class Controller {
 		String response=null;
 		String responseJson = httpRequest.getBody();
 		System.out.println("header"+httpRequest.getHeaders());
-		System.out.println("responseJSon "+responseJson);
+		System.out.println("responseJSon "+responseJson.toString());
 		PublicKeyCredential<AuthenticatorAttestationResponse, ClientRegistrationExtensionOutputs> pkc=null;
 		ObjectMapper mapper = new ObjectMapper()
 			    .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
